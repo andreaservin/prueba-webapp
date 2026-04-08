@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+
+    <h2>Registro</h2>
+
+    <input type="time" id="hora"><br><br>
+    <input type="text" id="ticket" placeholder="Ticket"><br><br>
+    <input type="text" id="obs" placeholder="Observación"><br><br>
+
+    <button onclick="enviar()">Guardar</button>
+
+    <script>
+        async function enviar() {
+            const data = {
+                hora: document.getElementById("hora").value,
+                ticket: document.getElementById("ticket").value,
+                obs: document.getElementById("obs").value
+            };
+
+            const url = process.env.API_URL;
+
+            try {
+                const res = await fetch(url, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                const json = await res.json();
+
+                if (json.result === "success") {
+                    alert("Guardado en Google Sheets");
+                } else {
+                    alert("Error: " + json.message);
+                }
+
+            } catch (err) {
+                alert("Error: " + err.message);
+            }
+        }
+    </script>
+
+</body>
+
+</html>
