@@ -5,7 +5,7 @@ const cors = require('cors');
 const app = express();
 app.use(cors());
 app.cors({
-    origin: 'https://andreaservin.github.io',
+    origin: process.env.WEBAPP_URL,
     methods: ['GET', 'POST'],
     allowedHeaders: ['Content-Type']
 });
