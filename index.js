@@ -4,6 +4,11 @@ const cors = require('cors');
 
 const app = express();
 app.use(cors());
+app.cors({
+    origin: 'https://andreaservin.github.io',
+    methods: ['GET', 'POST'],
+    allowedHeaders: ['Content-Type']
+});
 app.use(express.json());
 
 // ⚠️ Poner esto en Railway como variable de entorno
