@@ -3,12 +3,11 @@ const { google } = require('googleapis');
 const cors = require('cors');
 
 const app = express();
-app.use(cors());
-app.cors({
+app.use(cors({
     origin: process.env.WEBAPP_URL,
     methods: ['GET', 'POST'],
     allowedHeaders: ['Content-Type']
-});
+}));
 app.use(express.json());
 
 // ⚠️ Poner esto en Railway como variable de entorno
@@ -51,7 +50,7 @@ app.post('/guardar', async (req, res) => {
 
 // health check
 app.get('/', (req, res) => {
-  res.send('API funcionando');
+    res.send('API funcionando');
 });
 
 const PORT = process.env.PORT || 3000;
